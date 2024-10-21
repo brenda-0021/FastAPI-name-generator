@@ -1,10 +1,8 @@
 [phases]
-# Fase de construcción del backend
-build = [
-  "cd fast-api-backend && pip install -r requirements.txt",
-  "cd random_name_frontend && npm install && npm run build"
-]
+  build = [
+    "cd fast-api-backend && pip install -r requirements.txt",
+    "cd random_name_frontend && npm install && npm run build"
+  ]
 
 [start]
-# Iniciar solo el backend (FastAPI con Uvicorn)
-command = "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port 8000"
+  command = "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port 8000"
