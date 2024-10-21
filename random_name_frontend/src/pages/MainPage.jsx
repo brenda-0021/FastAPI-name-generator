@@ -13,8 +13,8 @@ import axios from "axios";
 const MainPage = () => {
   const [gender, setGender] = React.useState("");
   const [country, setCountry] = React.useState("");
-  const [names, setNames] = React.useState([]); // Cambia a un arreglo
-  const [loading, setLoading] = React.useState(false); // Estado de carga
+  const [names, setNames] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const handleCountry = (event) => {
     setCountry(event.target.value);
@@ -40,7 +40,7 @@ const MainPage = () => {
   };
 
   const handleClick = async () => {
-    setLoading(true); // Iniciar carga
+    setLoading(true);
     const nationality = createNationality();
     const payload = {
       nationality,
@@ -50,21 +50,21 @@ const MainPage = () => {
 
     try {
       const randomNamesResponse = await axios.get(
-        `http://localhost:8000/generate`, // Asegúrate de que tu API pueda manejar esto
-        { params: { ...payload, count: 5 } }, // Cambia esto si tu API lo permite
+        `http://localhost:8000/generate`,
+        { params: { ...payload, count: 5 } },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      const data = randomNamesResponse.data.random_names; // Cambia para manejar múltiples nombres
-      setNames(data); // Actualiza el estado para varios nombres
+      const data = randomNamesResponse.data.random_names;
+      setNames(data);
     } catch (error) {
-      const data = await error.data.err_message; // Corrige typo aquí
-      setNames([data]); // Cambia para que se ajuste al nuevo estado
+      const data = await error.data.err_message;
+      setNames([data]);
     } finally {
-      setLoading(false); // Terminar carga
+      setLoading(false);
     }
   };
 
