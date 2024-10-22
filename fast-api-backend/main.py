@@ -6,7 +6,6 @@ from utils.classes import APIException, RandomNameGenerator
 
 app = FastAPI()
 
-# Configuración de CORS
 origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
@@ -16,12 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Montar el directorio del frontend
-app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
+app.mount("/frontend", StaticFiles(directory="random_name_frontend/build"), name="frontend")
 
 @app.get("/")
 async def root():
-    # Redirigir a la página principal del frontend
     return RedirectResponse(url="/frontend/index.html")
 
 @app.get("/generate", status_code=200)
