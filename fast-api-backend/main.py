@@ -25,8 +25,6 @@ async def root():
 def generate_random_name(response: Response, nationality: str = "nepal", country: str = "nepal", gender: str = "male", count: int = 5):
     try:
         random_name_generator = RandomNameGenerator(nationality, country, gender)
-        
-        # Generar múltiples nombres
         random_names = random_name_generator.make_api_call(count)
         return {"random_names": random_names}
     except APIException as err:
