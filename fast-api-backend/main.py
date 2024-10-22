@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/frontend", StaticFiles(directory="random_name_frontend/build"), name="frontend")
+app.mount("/frontend", StaticFiles(directory="../random_name_frontend/build"), name="frontend")
 
 @app.get("/")
 async def root():
