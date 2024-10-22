@@ -6,6 +6,7 @@
 
 [phases.start]
   commands = [
-    "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port 8000 &",
-    "cd random_name_frontend && npm start"
+    "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} &",
+    "cd random_name_frontend && npm start --prefix random_name_frontend"
   ]
+
