@@ -4,7 +4,7 @@ import MainPage from "./pages/MainPage";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Ubuntu, Arial, sans-serif", // Asegúrate de agregar la fuente aquí
+    fontFamily: "Ubuntu, Arial, sans-serif",
   },
 });
 

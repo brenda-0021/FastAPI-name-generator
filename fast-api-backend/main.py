@@ -15,11 +15,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/frontend", StaticFiles(directory="../random_name_frontend/build"), name="static")
+app.mount("/static", StaticFiles(directory="../random_name_frontend/build/static"), name="static")
 
 @app.get("/")
 async def root():
-    return RedirectResponse(url="/frontend/index.html")
+    return RedirectResponse(url="/static/index.html")
 
 @app.get("/generate", status_code=200)
 def generate_random_name(response: Response, nationality: str = "nepal", country: str = "nepal", gender: str = "male", count: int = 5):
