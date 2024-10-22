@@ -1,7 +1,8 @@
 [phases.build]
 cmds = [
   "cd fast-api-backend && pip install -r requirements.txt",
-  "cd random_name_frontend && npm install && npm run build"
+  "cd random_name_frontend && npm install",
+  "cd random_name_frontend && npm run build"
 ]
 
 [phases.start]
