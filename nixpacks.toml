@@ -1,11 +1,11 @@
-[build]
-  command = [
-    "cd fast-api-backend && pip install -r requirements.txt",
-    "cd random_name_frontend && npm install && npm run build"
-  ]
+[phases.build]
+cmds = [
+  "cd fast-api-backend && pip install -r requirements.txt",
+  "cd random_name_frontend && npm install && npm run build"
+]
 
-[start]
-  command = [
-    "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} &",
-    "cd random_name_frontend && npm start"
-  ]
+[phases.start]
+cmds = [
+  "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} &",
+  "cd random_name_frontend && npm start"
+]
