@@ -1,8 +1,9 @@
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, HTMLResponse
 from utils.classes import APIException, RandomNameGenerator
+import os
 
 app = FastAPI()
 
@@ -17,14 +18,17 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="../random_name_frontend/build/static"), name="static")
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    return RedirectResponse(url="/static/index.html")
+    with open(os.path.join("../random_name_frontend/build/index.html")) as f:
+        return f.read()
 
 @app.get("/generate", status_code=200)
 def generate_random_name(response: Response, nationality: str = "nepal", country: str = "nepal", gender: str = "male", count: int = 5):
     try:
         random_name_generator = RandomNameGenerator(nationality, country, gender)
+        
+        # Generar múltiples nombres
         random_names = random_name_generator.make_api_call(count)
         return {"random_names": random_names}
     except APIException as err:
