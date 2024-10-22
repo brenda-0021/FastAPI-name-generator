@@ -1,12 +1,13 @@
-[phases.build]
-  commands = [
-    "cd fast-api-backend && pip install -r requirements.txt",
-    "cd random_name_frontend && npm install && npm run build"
-  ]
+[build]
+  # Usar pip para instalar dependencias de Python
+  command = ["cd fast-api-backend", "pip install -r requirements.txt"]
+  
+  # Usar npm para construir el frontend
+  command += ["cd random_name_frontend", "npm install", "npm run build"]
 
-[phases.start]
-  commands = [
+[start]
+  # Comando para iniciar el backend y frontend
+  command = [
     "cd fast-api-backend && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} &",
-    "cd random_name_frontend && npm start --prefix random_name_frontend"
+    "cd random_name_frontend && npm start"
   ]
-
