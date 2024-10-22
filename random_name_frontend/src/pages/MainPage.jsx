@@ -50,7 +50,7 @@ const MainPage = () => {
 
     try {
       const randomNamesResponse = await axios.get(
-        `http://localhost:8000/generate`,
+        `https://fastapi-name-generator-production.up.railway.app/generate`,
         { params: { ...payload, count: 5 } },
         {
           headers: {

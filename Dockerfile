@@ -12,6 +12,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY fast-api-backend/main.py ./
 COPY fast-api-backend/utils ./utils
 
+# Copia el frontend construido
+COPY random_name_frontend/build ./frontend
+
 # Expone el puerto en el que la aplicación escuchará
 EXPOSE 8000
 
