@@ -1,9 +1,13 @@
 [build]
   # Usar pip para instalar dependencias de Python
   command = ["cd fast-api-backend", "pip install -r requirements.txt"]
-  
+
   # Usar npm para construir el frontend
-  command += ["cd random_name_frontend", "npm install", "npm run build"]
+  command = [
+    "cd random_name_frontend",
+    "npm install",
+    "npm run build"
+  ]
 
 [start]
   # Comando para iniciar el backend y frontend
