@@ -7,7 +7,9 @@ import os
 
 app = FastAPI()
 
-origins = ["*"]
+origins = [
+    "http://localhost:3000",  # Si tu frontend está corriendo en este puerto
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -27,10 +29,12 @@ async def root():
 def generate_random_name(response: Response, nationality: str = "nepal", country: str = "nepal", gender: str = "male", count: int = 5):
     try:
         random_name_generator = RandomNameGenerator(nationality, country, gender)
-        
-        # Generar múltiples nombres
         random_names = random_name_generator.make_api_call(count)
         return {"random_names": random_names}
     except APIException as err:
         response.status_code = err.status_code
-        return {"err_message": str(err)}
+        return {"err_message": f"API Exception: {str(err)}"}
+    except Exception as e:
+        response.status_code = 500
+        return {"err_message": f"Unexpected error: {str(e)}"}
+
